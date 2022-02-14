@@ -30,7 +30,7 @@ Status: ✅Concluido.✅
 
   
 
-Projeto backend de API REST com SpringBoot desenvolvido durante o segundo semestre do curso de ADS/SI na **[FICR](https://ficr.catolica.edu.br/portal/)**, com o intuito de colocar em prática todo conteúdo estudado durante o período.
+Projeto backend de API REST com SpringBoot, desenvolvido durante o segundo semestre do curso de ADS/SI na **[FICR](https://ficr.catolica.edu.br/portal/)**, com o intuito de colocar em prática todo conteúdo estudado durante o período.
 
   
 
