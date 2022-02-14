@@ -1,4 +1,4 @@
-package com.example.todoList;
+package com.example.todoList.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.todoList.model.Todo;
+import com.example.todoList.repository.TodoRepository;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -22,7 +25,7 @@ import lombok.NoArgsConstructor;
 @RestController
 @AllArgsConstructor
 @NoArgsConstructor
-@RequestMapping(value = "/todos")
+@RequestMapping(value = "api/v1/todolist")
 @Api(value = "API REST To-do List")
 @CrossOrigin(origins = "*")
 public class TodoController {
@@ -36,29 +39,35 @@ public class TodoController {
 		return repository.findAll();
 	}
 
-	@GetMapping("/todos/{id}")
+	@GetMapping("/todo/{id}")
 	@ApiOperation(value = "Retorna uma terefa pelo Id")
 	public Optional<Todo> getTodoById(@PathVariable Long id) {
 		return repository.findById(id);
 	}
 
-	@PostMapping("/todos")
+	@PostMapping("/add")
 	@ApiOperation(value = "Adiciona uma nova tarefa")
 	public Todo saveTodo(@RequestBody Todo todo) {
 		return repository.save(todo);
 	}
 
-	@PutMapping("/todos")
+	@PutMapping("/update")
 	@ApiOperation(value = "Atualiza uma tarefa existente")
 	public Todo updateTodo(@RequestBody Todo todo) {
 		return repository.save(todo);
 
 	}
 
-	@DeleteMapping("/todos/{id}")
+	@DeleteMapping("/todo/{id}")
 	@ApiOperation(value = "Deleta uma tarefa pelo Id")
 	public void deleteTodoById(@PathVariable Long id) {
 		repository.deleteById(id);
+	}
+	
+	@DeleteMapping("/todos")
+	@ApiOperation(value = "Limpa todas as tarefas")
+	public void deleteAll() {
+		repository.deleteAll();
 	}
 
 }

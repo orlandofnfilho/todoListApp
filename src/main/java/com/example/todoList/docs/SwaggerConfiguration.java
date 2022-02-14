@@ -28,7 +28,7 @@ public class SwaggerConfiguration {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("To-do List - José Orlando Ferreira")
-				.description("Aplicação de Lista de Tarefas")
+				.description("App Lista de Tarefas")
 				.version("1.0.0")
 				.build();
 	}
