@@ -33,38 +33,38 @@ public class TodoController {
 	@Autowired
 	private TodoRepository repository;
 
-	@GetMapping("/todos")
+	@GetMapping
 	@ApiOperation(value = "Retorna todas as tarefas")
 	public List<Todo> getAllTodos() {
 		return repository.findAll();
 	}
 
-	@GetMapping("/todo/{id}")
+	@GetMapping("/{id}")
 	@ApiOperation(value = "Retorna uma terefa pelo Id")
 	public Optional<Todo> getTodoById(@PathVariable Long id) {
 		return repository.findById(id);
 	}
 
-	@PostMapping("/add")
+	@PostMapping
 	@ApiOperation(value = "Adiciona uma nova tarefa")
 	public Todo saveTodo(@RequestBody Todo todo) {
 		return repository.save(todo);
 	}
 
-	@PutMapping("/update")
+	@PutMapping
 	@ApiOperation(value = "Atualiza uma tarefa existente")
 	public Todo updateTodo(@RequestBody Todo todo) {
 		return repository.save(todo);
 
 	}
 
-	@DeleteMapping("/todo/{id}")
+	@DeleteMapping("/{id}")
 	@ApiOperation(value = "Deleta uma tarefa pelo Id")
 	public void deleteTodoById(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
 	
-	@DeleteMapping("/todos")
+	@DeleteMapping("/clean")
 	@ApiOperation(value = "Limpa todas as tarefas")
 	public void deleteAll() {
 		repository.deleteAll();
