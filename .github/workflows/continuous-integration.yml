@@ -60,3 +60,5 @@ jobs:
       run: |
           docker build -t $REGISTRY:${{ github.run_id }} .
           docker push $REGISTRY:${{ github.run_id }}
+          docker push $REGISTRY:latest
+          docker push $REGISTRY
