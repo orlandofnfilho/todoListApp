@@ -58,5 +58,5 @@ jobs:
       env:
           REGISTRY: ${{ secrets.IMAGE_REPO_URL }}
       run: |
-          docker build -t $REGISTRY/:${{ github.run_id }} .
-          docker push $REGISTRY/:${{ github.run_id }}
+          docker build -t $REGISTRY:${{ github.run_id }} .
+          docker push $REGISTRY:${{ github.run_id }}
