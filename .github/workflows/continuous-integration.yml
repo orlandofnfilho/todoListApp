@@ -57,6 +57,8 @@ jobs:
     - name: Tag, and push docker image to Amazon ECR Public
       env:
           REGISTRY: ${{ secrets.IMAGE_REPO_URL }}
+          IMAGE_TAG: ${{ github.sha }}
       run: |
-          docker build -t $REGISTRY .
+          docker build -t $REGISTRY/:$IMAGE_TAG .
+          docker push $REGISTRY/:$IMAGE_TAG
           docker push $REGISTRY/:latest
