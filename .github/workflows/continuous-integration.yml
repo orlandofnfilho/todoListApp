@@ -60,7 +60,15 @@ jobs:
       run: |
           docker build -t $REGISTRY:latest .
           docker push $REGISTRY:latest
-    - name: Deploy
-      uses: ecsdeployer/github-action@v1
+    
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition ${{ secrets.TASK_DEFINITION }} --query taskDefinition > task-definition.json
+        
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        image: $REGISTRY:latest
+        task-definition: ${{ secrets.TASK_DEFINITION }}
+        container-name: ${{ secrets.CONTAINER_NAME }}
+        image: ${{ secrets.IMAGE_REPO_URL }}:latest
