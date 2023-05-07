@@ -61,14 +61,18 @@ jobs:
           docker build -t $REGISTRY:latest .
           docker push $REGISTRY:latest
     
-    - name: Download task definition
-      run: |
-        aws ecs describe-task-definition --task-definition ${{ secrets.TASK_DEFINITION }} --query taskDefinition > task-definition.json
-        
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ${{ secrets.TASK_DEFINITION }}
+        task-definition: taskdef.json
         container-name: ${{ secrets.CONTAINER_NAME }}
         image: ${{ secrets.IMAGE_REPO_URL }}:latest
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ secrets.TASK_DEFINITION }}
+        service: totolistapp
+        cluster: ${{ secrets.CLUSTER_NAME }}
+        wait-for-service-stability: true
