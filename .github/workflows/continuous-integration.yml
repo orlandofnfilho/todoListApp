@@ -58,8 +58,5 @@ jobs:
       env:
           REGISTRY: ${{ secrets.IMAGE_REPO_URL }}
       run: |
-          docker build -t $REGISTRY:${{ github.run_id }} .
-          docker tag $REGISTRY:latest
-          docker push $REGISTRY:${{ github.run_id }}
+          docker build -t $REGISTRY:latest .
           docker push $REGISTRY:latest
-          docker push $REGISTRY
