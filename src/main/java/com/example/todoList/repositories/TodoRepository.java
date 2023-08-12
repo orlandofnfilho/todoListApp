@@ -1,8 +1,8 @@
-package com.example.todoList.repository;
+package com.example.todoList.repositories;
 
+import com.example.todoList.model.entities.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.todoList.model.Todo;
 import org.springframework.stereotype.Repository;
 
 @Repository
