@@ -10,6 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -20,5 +23,6 @@ public class Todo {
 	private Long id;
 	private String titulo;
 	private Status status;
+	private Instant createdAt;
 
 }
