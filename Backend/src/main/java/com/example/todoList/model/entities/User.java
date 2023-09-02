@@ -28,7 +28,7 @@ public class User implements Serializable {
     @ManyToOne
     private Profile profile;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Todo> todos = new ArrayList<>();
 
 }

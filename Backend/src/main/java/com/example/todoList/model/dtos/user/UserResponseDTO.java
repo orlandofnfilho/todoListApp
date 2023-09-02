@@ -1,6 +1,7 @@
 package com.example.todoList.model.dtos.user;
 
 
+import com.example.todoList.model.entities.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,6 @@ public class UserResponseDTO implements Serializable {
     private String name;
     private String email;
     private String photoUrl;
+
+    private Profile profile;
 }

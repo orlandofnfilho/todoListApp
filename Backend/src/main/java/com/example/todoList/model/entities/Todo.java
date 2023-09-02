@@ -1,9 +1,6 @@
 package com.example.todoList.model.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import com.example.todoList.model.enums.Status;
 import lombok.AllArgsConstructor;
@@ -27,6 +24,11 @@ public class Todo implements Serializable {
 	private Long id;
 	private String titulo;
 	private Status status;
+
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant createdAt;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
 
 }

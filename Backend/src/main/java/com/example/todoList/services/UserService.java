@@ -1,5 +1,6 @@
 package com.example.todoList.services;
 
+import com.example.todoList.model.dtos.user.UserRequestDTO;
 import com.example.todoList.model.entities.User;
 import com.example.todoList.repositories.ProfileRepository;
 import com.example.todoList.repositories.UserRepository;
@@ -13,7 +14,8 @@ public class UserService {
     private UserRepository userRepository;
     private ProfileRepository profileRepository;
 
-    public User saveUser(){
+    public User saveUser(UserRequestDTO dto){
+
         return new User();
     }
 }
