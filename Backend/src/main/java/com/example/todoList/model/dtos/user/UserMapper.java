@@ -5,6 +5,7 @@ import com.example.todoList.model.entities.User;
 import com.example.todoList.repositories.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserMapper {
 
@@ -13,6 +14,7 @@ public class UserMapper {
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
         user.setPhotoUrl(dto.getPhotoUrl());
+        user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
         return user;
     }
 
