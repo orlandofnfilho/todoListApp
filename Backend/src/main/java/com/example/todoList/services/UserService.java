@@ -36,9 +36,8 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getUser(Long id) {
-        User user = userRepository.findById(id)
+        return userRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("User not found id: "+ id));
-        return user;
     }
 
     @Transactional(readOnly = true)
@@ -55,6 +54,17 @@ public class UserService {
         user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
         user.setPhotoUrl(dto.getPhotoUrl());
         return UserMapper.fromEntity(user);
+    }
+
+    public void deleteUser(Long id){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found id: "+ id));
+        userRepository.delete(user);
+    }
+
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found email: "+email));
     }
 
 }
